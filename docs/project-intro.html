@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 探索之旅 — 项目介绍</title>
+<style>
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: "Noto Sans SC", "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: #0f172a; color: #e2e8f0; line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ---------- Slide System ---------- */
+.slide {
+  min-height: 100vh; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; padding: 4rem 2rem;
+  position: relative;
+}
+.slide-inner { max-width: 960px; width: 100%; }
+
+/* Alternating backgrounds */
+.slide:nth-child(odd)  { background: #0f172a; }
+.slide:nth-child(even) { background: #1e293b; }
+
+/* ---------- Typography ---------- */
+h1 { font-size: 3.5rem; font-weight: 700; line-height: 1.2; margin-bottom: 1rem; }
+h2 { font-size: 2.5rem; font-weight: 700; line-height: 1.3; margin-bottom: 1.5rem; color: #a5b4fc; }
+h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; color: #e2e8f0; }
+p  { font-size: 1.15rem; color: #94a3b8; margin-bottom: 1rem; }
+.highlight { color: #6366f1; }
+.accent    { color: #f59e0b; }
+.success   { color: #22c55e; }
+.subtitle  { font-size: 1.4rem; color: #94a3b8; max-width: 700px; }
+.small     { font-size: 0.85rem; color: #64748b; }
+
+/* ---------- Slide Number ---------- */
+.slide-num {
+  position: absolute; top: 2rem; right: 2rem;
+  font-size: 0.8rem; color: #475569; font-weight: 700; letter-spacing: 0.1em;
+}
+
+/* ---------- Grid ---------- */
+.grid { display: grid; gap: 1.5rem; margin-top: 1.5rem; }
+.grid-2 { grid-template-columns: 1fr 1fr; }
+.grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-5 { grid-template-columns: repeat(5, 1fr); }
+
+/* ---------- Cards ---------- */
+.card {
+  background: rgba(99,102,241,0.08); border: 1px solid #334155;
+  border-radius: 12px; padding: 1.5rem; transition: all 0.3s;
+}
+.card:hover { transform: translateY(-4px); border-color: #6366f1; }
+.card h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
+.card p  { font-size: 0.95rem; color: #94a3b8; margin: 0; }
+.card .num { font-size: 2rem; font-weight: 700; color: #6366f1; margin-bottom: 0.25rem; }
+.card .icon { font-size: 2rem; margin-bottom: 0.5rem; display: block; }
+.card-accent { border-left: 4px solid #f59e0b; }
+.card-success { border-left: 4px solid #22c55e; }
+
+/* ---------- Table ---------- */
+table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.95rem; }
+th { text-align: left; padding: 0.75rem 1rem; background: rgba(99,102,241,0.1); color: #a5b4fc;
+     font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+td { padding: 0.6rem 1rem; border-bottom: 1px solid #1e293b; color: #cbd5e1; }
+tr:hover td { background: rgba(99,102,241,0.04); }
+
+/* ---------- Badge ---------- */
+.badge {
+  display: inline-block; padding: 3px 12px; border-radius: 9999px;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+}
+.badge-primary { background: rgba(99,102,241,0.15); color: #a5b4fc; }
+.badge-success { background: rgba(34,197,94,0.15); color: #86efac; }
+.badge-amber   { background: rgba(245,158,11,0.15); color: #fde68a; }
+
+/* ---------- Progress Bar ---------- */
+.progress-bar { height: 12px; background: #334155; border-radius: 6px; overflow: hidden; margin: 1rem 0; }
+.progress-fill { height: 100%; border-radius: 6px; }
+.progress-fill.green  { background: linear-gradient(90deg, #22c55e, #86efac); }
+.progress-fill.indigo { background: linear-gradient(90deg, #6366f1, #a5b4fc); }
+
+/* ---------- Divider ---------- */
+.divider { border: none; border-top: 1px solid #334155; margin: 2rem 0; }
+
+/* ---------- Lists ---------- */
+ul.check { list-style: none; padding: 0; }
+ul.check li { padding: 0.4rem 0; font-size: 1rem; color: #cbd5e1; display: flex; align-items: center; gap: 0.5rem; }
+ul.check li::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #22c55e; flex-shrink: 0; }
+
+/* ---------- Nav Dots ---------- */
+.nav-dots {
+  position: fixed; right: 1.5rem; top: 50%; transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 10px; z-index: 100;
+}
+.nav-dot {
+  width: 10px; height: 10px; border-radius: 50%; background: #334155;
+  border: none; cursor: pointer; transition: all 0.3s; padding: 0;
+}
+.nav-dot:hover, .nav-dot.active { background: #6366f1; transform: scale(1.3); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.8rem; }
+  .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; }
+  .nav-dots { display: none; }
+  .slide { padding: 3rem 1.5rem; }
+}
+
+/* ---------- Print ---------- */
+@media print {
+  .slide { min-height: auto; page-break-after: always; padding: 2rem 1rem; }
+  body { background: #fff; color: #000; }
+  h2 { color: #4f46e5; }
+  .card { border: 1px solid #ccc; }
+  td, th { color: #000; }
+  .nav-dots { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation Dots -->
+<nav class="nav-dots" id="navDots"></nav>
+
+<!-- ==================== Slide 1: Cover ==================== -->
+<div class="slide" id="s1">
+  <span class="slide-num">01 / 12</span>
+  <div class="slide-inner" style="text-align:center;">
+    <span class="badge badge-primary">2026-03-26</span>
+    <h1 style="margin-top:1.5rem;">AI <span class="highlight">探索之旅</span></h1>
+    <p class="subtitle" style="margin:0 auto 2rem;">
+      面向 13–15 岁初中生的人工智能入门课程<br>
+      纯前端网页交付 · 支持中英双语 · 5 课时
+    </p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <span class="badge badge-success">v1.0.0</span>
+      <span class="badge badge-amber">5 Lessons</span>
+      <span class="badge badge-primary">744 Tests Passed</span>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== Slide 2: Problem & Vision ==================== -->
+<div class="slide" id="s2">
+  <span class="slide-num">02 / 12</span>
+  <div class="slide-inner">
+    <h2>项目背景与愿景</h2>
+    <div class="grid grid-2">
+      <div>
+        <h3>问题</h3>
+        <ul class="check">
+          <li>AI 已渗透日常生活，但青少年缺乏系统认知</li>
+          <li>现有 AI 课程多面向成人，门槛过高</li>
+          <li>缺少中英双语的互动式 AI 入门教材</li>
+          <li>学校缺乏即用型、免部署的教学资源</li>
+        </ul>
+      </div>
+      <div>
+        <h3>愿景</h3>
+        <ul class="check">
+          <li>让每个初中生都能理解 AI 基本原理</li>
+          <li>零门槛 — 无需编程经验即可上手</li>
+          <li>零部署 — 双击 HTML 即可使用</li>
+          <li>双语支持 — 服务全球中英文学习者</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== Slide 3: Audience ==================== -->
+<div class="slide" id="s3">
+  <span class="slide-num">03 / 12</span>
+  <div class="slide-inner">
+    <h2>目标受众</h2>
+    <div class="grid grid-3">
+      <div class="card" style="text-align:center;">
+        <span class="icon">&#127891;</span>
+        <h3>13–15 岁初中生</h3>
+        <p>主要受众群体</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <span class="icon">&#128187;</span>
+        <h3>零基础/少量经验</h3>
+        <p>无需编程基础<br>有 Scratch/Python 经验更佳</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <span class="icon">&#129302;</span>
+        <h3>对 AI 好奇</h3>
+        <p>接触过 ChatGPT、AI 绘画<br>想了解背后原理</p>
+      </div>
+    </div>
+    <hr class="divider">
+    <h3>学习目标</h3>
+    <div class="grid grid-5" style="margin-top:1rem;">
+      <div class="card" style="text-align:center;padding:1rem;">
+        <div class="num">1</div>
+        <p style="font-size:0.85rem;">用自己的话解释 AI / ML / DL</p>
+      </div>
+      <div class="card" style="text-align:center;padding:1rem;">
+        <div class="num">2</div>
+        <p style="font-size:0.85rem;">理解数据→训练→预测流程</p>
+      </div>
+      <div class="card" style="text-align:center;padding:1rem;">
+        <div class="num">3</div>
+        <p style="font-size:0.85rem;">阅读并修改简单 Python AI 代码</p>
+      </div>
+      <div class="card" style="text-align:center;padding:1rem;">
+        <div class="num">4</div>
+        <p style="font-size:0.85rem;">掌握 Prompt Engineering 技巧</p>
+      </div>
+      <div class="card" style="text-align:center;padding:1rem;">
+        <div class="num">5</div>
+        <p style="font-size:0.85rem;">辨识 AI 能力边界与伦理问题</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== Slide 4: Course Overview ==================== -->
+<div class="slide" id="s4">
+  <span class="slide-num">04 / 12</span>
+  <div class="slide-inner">
+    <h2>课程体系</h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:50px;">课号</th>
+          <th>中文标题</th>
+          <th>English Title</th>
+          <th style="width:70px;">时长</th>
+          <th>核心关键词</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align:center;"><span class="badge badge-primary">01</span></td>
+          <td>走进 AI 的世界</td>
+          <td>Welcome to the World of AI</td>
+          <td style="text-align:center;">45 min</td>
+          <td>定义、历史、生活中的 AI</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;"><span class="badge badge-primary">02</span></td>
+          <td>机器是怎么"学习"的</td>
+          <td>How Do Machines Learn?</td>
+          <td style="text-align:center;">45 min</td>
+          <td>数据、监督学习、特征、模型</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;"><span class="badge badge-primary">03</span></td>
+          <td>神经网络与深度学习</td>
+          <td>Neural Networks & Deep Learning</td>
+          <td style="text-align:center;">45 min</td>
+          <td>神经元、层、CNN、可视化</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;"><span class="badge badge-primary">04</span></td>
+          <td>大语言模型与 AIGC</td>
+          <td>LLMs & AI-Generated Content</td>
+          <td style="text-align:center;">45 min</td>
+          <td>Token、Transformer、Prompt</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;"><span class="badge badge-primary">05</span></td>
+          <td>AI 的未来与责任</td>
+          <td>The Future & Ethics of AI</td>
+          <td style="text-align:center;">45 min</td>
+          <td>偏见、安全、隐私、职业展望</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ==================== Slide 5: Features ==================== -->
+<div class="slide" id="s5">
+  <span class="slide-num">05 / 12</span>
+  <div class="slide-inner">
+    <h2>核心特性</h2>
+    <div class="grid grid-3">
+      <div class="card">
+        <span class="icon">&#127760;</span>
+        <h3>中英双语</h3>
+        <p>一键切换，偏好自动保存，全部内容双语覆盖</p>
+      </div>
+      <div class="card">
+        <span class="icon">&#127769;</span>
+        <h3>暗色模式</h3>
+        <p>亮色/暗色主题，跟随系统偏好，手动可切换</p>
+      </div>
+      <div class="card">
+        <span class="icon">&#128377;</span>
+        <h3>丰富交互</h3>
+        <p>时间线、决策树、AI 鉴别、Prompt 挑战</p>
+      </div>
+      <div class="card">
+        <span class="icon">&#9989;</span>
+        <h3>即时测验</h3>
+        <p>每课 5 题 + 结业 10 题，答题即时反馈</p>
+      </div>
+      <div class="card">
+        <span class="icon">&#128190;</span>
+        <h3>进度保存</h3>
+        <p>localStorage 自动记录完成状态和分数</p>
+      </div>
+      <div class="card">
+        <span class="icon">&#128241;</span>
+        <h3>响应式</h3>
+        <p>手机 / 平板 / 桌面三端自适应</p>
+      </div>
+      <div class="card">
+        <span class="icon">&#9889;</span>
+        <h3>零依赖</h3>
+        <p>纯 HTML/CSS/JS，无框架无构建</p>
+      </div>
+      <div class="card">
+        <span class="icon">&#128424;</span>
+        <h3>打印友好</h3>
+        <p>@media print 优化，可直接打印为讲义</p>
+      </div>
+      <div class="card">
+        <span class="icon">&#128640;</span>
+        <h3>即用型</h3>
+        <p>双击 index.html 即可使用，无需安装</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== Slide 6: Interactive Components ==================== -->
+<div class="slide" id="s6">
+  <span class="slide-num">06 / 12</span>
+  <div class="slide-inner">
+    <h2>交互组件</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>组件</th>
+          <th>所在课程</th>
+          <th>说明</th>
+          <th>技术实现</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>交互式时间线</td>
+          <td>第 1 课</td>
+          <td>AI 发展历史 6 个里程碑，滚动淡入，点击展开详情</td>
+          <td>IntersectionObserver + classList</td>
+        </tr>
+        <tr>
+          <td>AI 还是人类？</td>
+          <td>第 1 课</td>
+          <td>5 组内容判断是否 AI 生成，即时揭示答案和计分</td>
+          <td>data-answer + click 事件</td>
+        </tr>
+        <tr>
+          <td>决策树游戏</td>
+          <td>第 2 课</td>
+          <td>通过是/否问题分类动物，6 个叶节点</td>
+          <td>data-next 节点切换</td>
+        </tr>
+        <tr>
+          <td>代码展示</td>
+          <td>第 2 课</td>
+          <td>Python 代码 + 语法高亮 + 一键复制 + 输出展示</td>
+          <td>Clipboard API + CSS 着色类</td>
+        </tr>
+        <tr>
+          <td>可展开卡片</td>
+          <td>第 3/4/5 课</td>
+          <td>折叠/展开详细内容</td>
+          <td>classList.toggle('open') + max-height</td>
+        </tr>
+        <tr>
+          <td>Prompt 挑战</td>
+          <td>第 4 课</td>
+          <td>3 个场景写 Prompt，对照参考答案</td>
+          <td>textarea + toggle 参考面板</td>
+        </tr>
+        <tr>
+          <td>测验系统</td>
+          <td>全部课程</td>
+          <td>单选题，即时反馈，解释，计分，进度保存</td>
+          <td>data-correct + localStorage</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ==================== Slide 7: Tech Stack ==================== -->
+<div class="slide" id="s7">
+  <span class="slide-num">07 / 12</span>
+  <div class="slide-inner">
+    <h2>技术架构</h2>
+    <div class="grid grid-2">
+      <div>
+        <h3>技术选型</h3>
+        <table>
+          <thead><tr><th>层面</th><th>选择</th></tr></thead>
+          <tbody>
+            <tr><td>标记语言</td><td>HTML5</td></tr>
+            <tr><td>样式</td><td>CSS3 (自定义属性)</td></tr>
+            <tr><td>交互</td><td>Vanilla JS (ES6+)</td></tr>
+            <tr><td>字体</td><td>Google Fonts CDN</td></tr>
+            <tr><td>图标</td><td>内联 SVG</td></tr>
+            <tr><td>数据存储</td><td>localStorage</td></tr>
+            <tr><td>测试</td><td>Python + BeautifulSoup</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3>代码统计</h3>
+        <table>
+          <thead><tr><th>文件</th><th style="text-align:right;">行数</th></tr></thead>
+          <tbody>
+            <tr><td>style.css</td><td style="text-align:right;">1,319</td></tr>
+            <tr><td>main.js</td><td style="text-align:right;">385</td></tr>
+            <tr><td>index.html</td><td style="text-align:right;">268</td></tr>
+            <tr><td>5 个课程页面</td><td style="text-align:right;">3,886</td></tr>
+            <tr><td><strong>总计</strong></td><td style="text-align:right;"><strong>5,858</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <hr class="divider">
+    <h3>零依赖设计哲学</h3>
+    <p>不使用 React / Vue / Angular / jQuery / Bootstrap / Tailwind。<br>
+    全部功能通过原生 Web API 实现，确保可离线使用、双击即可打开。</p>
+  </div>
+</div>
+
+<!-- ==================== Slide 8: Test Results ==================== -->
+<div class="slide" id="s8">
+  <span class="slide-num">08 / 12</span>
+  <div class="slide-inner">
+    <h2>测试报告</h2>
+    <div style="display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem;">
+      <div class="card" style="text-align:center;min-width:140px;">
+        <div class="num" style="color:#a5b4fc;">744</div><p>总测试数</p>
+      </div>
+      <div class="card" style="text-align:center;min-width:140px;">
+        <div class="num" style="color:#86efac;">744</div><p>通过</p>
+      </div>
+      <div class="card" style="text-align:center;min-width:140px;">
+        <div class="num" style="color:#fca5a5;">0</div><p>失败</p>
+      </div>
+      <div class="card" style="text-align:center;min-width:140px;">
+        <div class="num" style="color:#fde68a;">100%</div><p>通过率</p>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr><th>测试套件</th><th style="text-align:center;">测试数</th><th style="text-align:center;">通过</th><th style="text-align:center;">状态</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>HTML Structure & Validation</td><td style="text-align:center;">102</td><td style="text-align:center;">102</td><td style="text-align:center;"><span class="badge badge-success">PASS</span></td></tr>
+        <tr><td>Content Completeness</td><td style="text-align:center;">118</td><td style="text-align:center;">118</td><td style="text-align:center;"><span class="badge badge-success">PASS</span></td></tr>
+        <tr><td>Navigation & Links</td><td style="text-align:center;">96</td><td style="text-align:center;">96</td><td style="text-align:center;"><span class="badge badge-success">PASS</span></td></tr>
+        <tr><td>Bilingual Coverage</td><td style="text-align:center;">229</td><td style="text-align:center;">229</td><td style="text-align:center;"><span class="badge badge-success">PASS</span></td></tr>
+        <tr><td>CSS Component Coverage</td><td style="text-align:center;">63</td><td style="text-align:center;">63</td><td style="text-align:center;"><span class="badge badge-success">PASS</span></td></tr>
+        <tr><td>JavaScript Functionality</td><td style="text-align:center;">63</td><td style="text-align:center;">63</td><td style="text-align:center;"><span class="badge badge-success">PASS</span></td></tr>
+        <tr><td>Accessibility</td><td style="text-align:center;">73</td><td style="text-align:center;">73</td><td style="text-align:center;"><span class="badge badge-success">PASS</span></td></tr>
+      </tbody>
+    </table>
+    <p class="small" style="margin-top:1rem;text-align:center;">测试运行时间: 2026-03-26 10:16:38 +0800</p>
+  </div>
+</div>
+
+<!-- ==================== Slide 9: Deployment ==================== -->
+<div class="slide" id="s9">
+  <span class="slide-num">09 / 12</span>
+  <div class="slide-inner">
+    <h2>部署方案</h2>
+    <table>
+      <thead>
+        <tr><th>部署方式</th><th style="text-align:center;">难度</th><th style="text-align:center;">费用</th><th>适合场景</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>直接打开 HTML</td><td style="text-align:center;">零</td><td style="text-align:center;">免费</td><td>个人使用、课堂演示</td></tr>
+        <tr><td>GitHub Pages</td><td style="text-align:center;">低</td><td style="text-align:center;">免费</td><td>开源项目、长期托管</td></tr>
+        <tr><td>Vercel / Netlify</td><td style="text-align:center;">低</td><td style="text-align:center;">免费</td><td>快速部署、自动 CI/CD</td></tr>
+        <tr><td>Nginx / Apache</td><td style="text-align:center;">中</td><td style="text-align:center;">低</td><td>学校内网、企业自建</td></tr>
+        <tr><td>Docker</td><td style="text-align:center;">中</td><td style="text-align:center;">低</td><td>容器化环境</td></tr>
+        <tr><td>U 盘 / 局域网</td><td style="text-align:center;">零</td><td style="text-align:center;">免费</td><td>无网络环境、教室课堂</td></tr>
+      </tbody>
+    </table>
+    <hr class="divider">
+    <div class="grid grid-2">
+      <div class="card card-accent">
+        <h3>最简部署</h3>
+        <p>将整个 AI-Class 文件夹拷贝到 U 盘，双击 index.html 即可</p>
+      </div>
+      <div class="card card-success">
+        <h3>推荐部署</h3>
+        <p>推送到 GitHub，启用 GitHub Pages，获得永久在线地址</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== Slide 10: Project Stats ==================== -->
+<div class="slide" id="s10">
+  <span class="slide-num">10 / 12</span>
+  <div class="slide-inner">
+    <h2>项目数据总览</h2>
+    <div class="grid grid-4">
+      <div class="card" style="text-align:center;">
+        <div class="num">7</div><p>HTML 页面</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div class="num">5,858</div><p>代码总行数</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div class="num">35</div><p>课程章节</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div class="num">30</div><p>测验题目</p>
+      </div>
+    </div>
+    <div class="grid grid-4" style="margin-top:0;">
+      <div class="card" style="text-align:center;">
+        <div class="num">7</div><p>交互组件类型</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div class="num">23</div><p>CSS 模块</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div class="num">12</div><p>JS 功能模块</p>
+      </div>
+      <div class="card" style="text-align:center;">
+        <div class="num">744</div><p>自动化测试</p>
+      </div>
+    </div>
+    <hr class="divider">
+    <h3>完成度</h3>
+    <p style="margin-bottom:0.25rem;">内容完成度</p>
+    <div class="progress-bar"><div class="progress-fill green" style="width:100%;"></div></div>
+    <p style="margin-bottom:0.25rem;">功能完成度</p>
+    <div class="progress-bar"><div class="progress-fill green" style="width:100%;"></div></div>
+    <p style="margin-bottom:0.25rem;">测试覆盖</p>
+    <div class="progress-bar"><div class="progress-fill indigo" style="width:100%;"></div></div>
+  </div>
+</div>
+
+<!-- ==================== Slide 11: Roadmap ==================== -->
+<div class="slide" id="s11">
+  <span class="slide-num">11 / 12</span>
+  <div class="slide-inner">
+    <h2>后续规划</h2>
+    <div class="grid grid-2">
+      <div>
+        <h3>短期 (v1.1)</h3>
+        <ul class="check">
+          <li>W3C HTML 验证通过</li>
+          <li>跨浏览器兼容性测试</li>
+          <li>添加课程图片/插图资源</li>
+          <li>SEO 优化 (Open Graph / Meta)</li>
+        </ul>
+      </div>
+      <div>
+        <h3>中期 (v2.0)</h3>
+        <ul class="check">
+          <li>增加更多互动可视化 (如 CNN 动画)</li>
+          <li>嵌入 Python 在线运行环境</li>
+          <li>增加教师管理面板</li>
+          <li>学习数据分析仪表盘</li>
+        </ul>
+      </div>
+    </div>
+    <hr class="divider">
+    <div class="grid grid-2">
+      <div>
+        <h3>长期 (v3.0)</h3>
+        <ul class="check">
+          <li>增加第 6–10 课 (进阶内容)</li>
+          <li>AI 助教对话功能</li>
+          <li>结业证书自动生成</li>
+          <li>多语言扩展 (日语 / 韩语)</li>
+        </ul>
+      </div>
+      <div>
+        <h3>社区贡献</h3>
+        <ul class="check">
+          <li>开源到 GitHub</li>
+          <li>欢迎提交 PR / Issue</li>
+          <li>课程内容持续迭代</li>
+          <li>适配更多教学场景</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== Slide 12: Thank You ==================== -->
+<div class="slide" id="s12">
+  <span class="slide-num">12 / 12</span>
+  <div class="slide-inner" style="text-align:center;">
+    <h1>Thank You</h1>
+    <p class="subtitle" style="margin:1rem auto 2rem;">
+      AI 探索之旅 — 让每个孩子都能理解人工智能
+    </p>
+    <div style="display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;">
+      <div class="card" style="min-width:200px;">
+        <h3>项目仓库</h3>
+        <p>github.com/[user]/AI-Class</p>
+      </div>
+      <div class="card" style="min-width:200px;">
+        <h3>在线演示</h3>
+        <p>[user].github.io/AI-Class</p>
+      </div>
+    </div>
+    <p class="small" style="margin-top:3rem;">2026-03-26 | v1.0.0 | MIT License</p>
+  </div>
+</div>
+
+<!-- ==================== Script ==================== -->
+<script>
+(function() {
+  const slides = document.querySelectorAll('.slide');
+  const dotsContainer = document.getElementById('navDots');
+
+  // Create nav dots
+  slides.forEach(function(slide, i) {
+    const dot = document.createElement('button');
+    dot.className = 'nav-dot';
+    dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+    dot.addEventListener('click', function() {
+      slide.scrollIntoView({ behavior: 'smooth' });
+    });
+    dotsContainer.appendChild(dot);
+  });
+
+  // Highlight active dot
+  const dots = dotsContainer.querySelectorAll('.nav-dot');
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        const idx = Array.from(slides).indexOf(entry.target);
+        dots.forEach(function(d, i) {
+          d.classList.toggle('active', i === idx);
+        });
+      }
+    });
+  }, { threshold: 0.5 });
+
+  slides.forEach(function(s) { observer.observe(s); });
+})();
+</script>
+</body>
+</html>

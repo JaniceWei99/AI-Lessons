@@ -1,0 +1,9 @@
+# Python
+__pycache__/
+*.pyc
+
+# Generated test reports
+test/reports/
+
+# Devin tool config
+.devin/
