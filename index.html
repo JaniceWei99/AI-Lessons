@@ -12,7 +12,7 @@
   <style>
     /* Portal-specific styles */
     .editions {
-      max-width: 1100px;
+      max-width: 1600px;
       margin: 0 auto;
       padding: var(--sp-section) var(--sp-xl);
     }
@@ -25,7 +25,7 @@
     }
     .editions-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: var(--sp-xl);
     }
     .edition-card {
@@ -55,9 +55,13 @@
     .badge-standard { background: #ede9fe; color: #6366f1; }
     .badge-deep { background: #dbeafe; color: #2563eb; }
     .badge-lab { background: #d1fae5; color: #059669; }
+    .badge-app { background: #fef3c7; color: #d97706; }
+    .badge-web { background: #fce7f3; color: #db2777; }
     [data-theme="dark"] .badge-standard { background: #3b2f7e; color: #a5b4fc; }
     [data-theme="dark"] .badge-deep { background: #1e3a5f; color: #93c5fd; }
     [data-theme="dark"] .badge-lab { background: #134e4a; color: #6ee7b7; }
+    [data-theme="dark"] .badge-app { background: #78350f; color: #fde68a; }
+    [data-theme="dark"] .badge-web { background: #831843; color: #fbcfe8; }
     .edition-icon {
       width: 64px;
       height: 64px;
@@ -115,17 +119,23 @@
       background: var(--c-primary-dark);
       transform: translateY(-2px);
     }
-    @media (max-width: 900px) {
+    @media (max-width: 1300px) {
       .editions-grid {
-        grid-template-columns: 1fr;
-        max-width: 480px;
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 900px;
         margin: 0 auto;
       }
     }
-    @media (max-width: 900px) and (min-width: 601px) {
+    @media (max-width: 900px) {
       .editions-grid {
         grid-template-columns: repeat(2, 1fr);
-        max-width: 720px;
+        max-width: 620px;
+      }
+    }
+    @media (max-width: 600px) {
+      .editions-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
       }
     }
   </style>
@@ -144,6 +154,8 @@
       <a href="standard-5/index.html"><span class="zh">精简版</span><span class="en">Standard 5</span></a>
       <a href="standard-15/index.html"><span class="zh">完整版</span><span class="en">Standard 15</span></a>
       <a href="lab-10/index.html"><span class="zh">实验版</span><span class="en">Lab 10</span></a>
+      <a href="app-inventor-10/index.html"><span class="zh">App创造营</span><span class="en">App Studio</span></a>
+      <a href="web-ai-12/index.html"><span class="zh">网站工坊</span><span class="en">Web Studio</span></a>
     </div>
 
     <div class="nav-actions">
@@ -286,6 +298,68 @@
         <a href="lab-10/index.html" class="edition-cta">
           <span class="zh">进入实验室</span>
           <span class="en">Enter Lab</span>
+        </a>
+      </div>
+
+      <!-- App Inventor 10 -->
+      <div class="edition-card">
+        <span class="edition-badge badge-app">
+          <span class="zh">创造营</span>
+          <span class="en">App Studio</span>
+        </span>
+        <svg class="edition-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <rect x="5" y="2" width="14" height="20" rx="2" ry="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="12" y1="18" x2="12.01" y2="18" stroke-linecap="round" stroke-linejoin="round"/>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 8h6M9 12h4"/>
+        </svg>
+        <h3 class="edition-title">
+          <span class="zh">10 课 AI App 创造营</span>
+          <span class="en">10-Lesson AI App Studio</span>
+        </h3>
+        <p class="edition-subtitle">
+          <span class="zh">用 MIT App Inventor + AI API 做出真正能用的手机 App</span>
+          <span class="en">Build real AI-powered mobile apps with MIT App Inventor + AI APIs</span>
+        </p>
+        <ul class="edition-meta">
+          <li><span class="zh">10 节课，每节约 1.5 小时</span><span class="en">10 lessons, ~1.5 hrs each</span></li>
+          <li><span class="zh">适合 10-14 岁，零基础</span><span class="en">Ages 10-14, no experience needed</span></li>
+          <li><span class="zh">ChatGPT / Gemini API 实战</span><span class="en">Hands-on with ChatGPT / Gemini APIs</span></li>
+          <li><span class="zh">作品可参加 MIT Hackathon / DSA 面试</span><span class="en">Competition & DSA portfolio ready</span></li>
+        </ul>
+        <a href="app-inventor-10/index.html" class="edition-cta">
+          <span class="zh">开始创造</span>
+          <span class="en">Start Building</span>
+        </a>
+      </div>
+
+      <!-- Web AI 12 -->
+      <div class="edition-card">
+        <span class="edition-badge badge-web">
+          <span class="zh">网站工坊</span>
+          <span class="en">Web Studio</span>
+        </span>
+        <svg class="edition-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <polyline points="16 18 22 12 16 6" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="8 6 2 12 8 18" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="14.5" y1="4" x2="9.5" y2="20" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3 class="edition-title">
+          <span class="zh">12 课 AI 网站工坊</span>
+          <span class="en">12-Lesson AI Web Studio</span>
+        </h3>
+        <p class="edition-subtitle">
+          <span class="zh">用 HTML/CSS/JS + AI API 做出有 AI 功能的真网站，上线可访问</span>
+          <span class="en">Build a real AI-powered website with HTML/CSS/JS + AI APIs — live on the web</span>
+        </p>
+        <ul class="edition-meta">
+          <li><span class="zh">12 节课，每节约 1.5 小时</span><span class="en">12 lessons, ~1.5 hrs each</span></li>
+          <li><span class="zh">适合 12-16 岁，零基础</span><span class="en">Ages 12-16, no experience needed</span></li>
+          <li><span class="zh">AI 聊天助手 + AI 图像生成</span><span class="en">AI chatbot + AI image generation</span></li>
+          <li><span class="zh">GitHub Pages 部署，真正上线</span><span class="en">Deploy on GitHub Pages — truly live</span></li>
+        </ul>
+        <a href="web-ai-12/index.html" class="edition-cta">
+          <span class="zh">开始建站</span>
+          <span class="en">Start Building</span>
         </a>
       </div>
 

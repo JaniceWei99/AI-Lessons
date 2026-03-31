@@ -1,6 +1,6 @@
 # 技术架构文档 / Architecture
 
-> 最后更新: 2026-03-27 12:00 +0800
+> 最后更新: 2026-03-31 23:00 +0800
 
 ---
 
@@ -29,7 +29,7 @@
 │                        浏览器 (Client)                       │
 │                                                             │
 │  ┌──────────┐   ┌───────────┐   ┌────────────────────────┐ │
-│  │ HTML x 34│   │ CSS x 1   │   │ JavaScript x 1         │ │
+│  │ HTML x 58│   │ CSS x 1   │   │ JavaScript x 1         │ │
 │  │          │   │           │   │                        │ │
 │  │ index    │   │ style.css │   │ main.js                │ │
 │  │ lesson1  │   │ 25 模块   │   │ 12 功能模块 + Quiz 增强  │ │
@@ -110,6 +110,14 @@ AI-Class/                           # 项目根目录
 │   ├── index.html                  # 版本首页
 │   └── lessons/                    # lesson1-10.html
 │
+├── app-inventor-10/                # AI App 创造营 (10 课时)
+│   ├── index.html                  # 版本首页
+│   └── lessons/                    # lesson1-10.html
+│
+├── web-ai-12/                      # AI 网站工坊 (12 课时)
+│   ├── index.html                  # 版本首页
+│   └── lessons/                    # lesson1-12.html
+│
 ├── assets/images/                  # 图片资源 (可选)
 │
 ├── test/                           # 测试套件
@@ -126,11 +134,13 @@ AI-Class/                           # 项目根目录
 |:----------------|:-------:|:------------------------------|
 | style.css       | 1,491   | 全局样式，25 个模块             |
 | main.js         |   486   | 全局脚本，12 个功能模块          |
-| index.html      |   382   | 门户页面 (版本选择器)            |
+| index.html      |   456   | 门户页面 (版本选择器)            |
 | standard-5/     | 4,190   | 精简版 5 课 + 版本首页           |
 | standard-15/    | 4,371   | 完整版 15 课 + 版本首页          |
 | lab-10/         | 4,888   | 实验版 10 课 + 版本首页          |
-| **总计**        | **~15,800** | **不含测试和文档**           |
+| app-inventor-10/| 4,671   | 创造营 10 课 + 版本首页          |
+| web-ai-12/      | 6,344   | 网站工坊 12 课 + 版本首页        |
+| **总计**        | **~26,900** | **不含测试和文档**           |
 
 ---
 
@@ -466,14 +476,14 @@ localStorage 未保存  →  读取 prefers-color-scheme
 
 | 套件                      | 测试数 | 检查内容                                |
 |:-------------------------|:------:|:---------------------------------------|
-| HTML Structure            |   646  | DOCTYPE、meta、nav、footer、data 属性   |
-| Content Completeness      |   224  | 章节数、Quiz 题数、交互组件、关键词        |
-| Navigation & Links        |   754  | 内部链接有效性、上下课导航                |
-| Bilingual Coverage        | 1,343  | 标题/按钮/Quiz/导航/页脚双语覆盖          |
+| HTML Structure            | 1,102  | DOCTYPE、meta、nav、footer、data 属性   |
+| Content Completeness      |   316  | 章节数、Quiz 题数、交互组件、关键词        |
+| Navigation & Links        | 1,286  | 内部链接有效性、上下课导航                |
+| Bilingual Coverage        | 2,485  | 标题/按钮/Quiz/导航/页脚双语覆盖          |
 | CSS Component Coverage    |    69  | 设计 Token、暗色模式、响应式、打印样式     |
 | JavaScript Functionality  |    63  | 函数存在性、IIFE、事件绑定、存储键         |
-| Accessibility             |   608  | ARIA 标签、语义 HTML、键盘可访问性        |
-| **总计**                  | **3,707** |                                     |
+| Accessibility             |   956  | ARIA 标签、语义 HTML、键盘可访问性        |
+| **总计**                  | **6,277** |                                     |
 
 ### 运行与报告
 
@@ -486,4 +496,4 @@ uv run test/run_all.py
 
 ---
 
-*文档版本: v1.1 | 最后更新: 2026-03-27 12:00 +0800*
+*文档版本: v1.3 | 最后更新: 2026-03-31 23:00 +0800*

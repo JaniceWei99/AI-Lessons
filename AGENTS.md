@@ -32,6 +32,12 @@ AI-Class/
 ├── lab-10/                 # 10-lab hands-on edition
 │   ├── index.html          # Edition landing page
 │   └── lessons/            # lesson1-10.html
+├── app-inventor-10/        # 10-lesson AI App Studio (MIT App Inventor + AI API)
+│   ├── index.html          # Edition landing page
+│   └── lessons/            # lesson1-10.html
+├── web-ai-12/              # 12-lesson AI Web Studio (HTML/CSS/JS + AI API)
+│   ├── index.html          # Edition landing page
+│   └── lessons/            # lesson1-12.html
 ├── test/                   # Test suite
 └── docs/                   # Documentation
 ```

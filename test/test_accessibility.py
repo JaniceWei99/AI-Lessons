@@ -15,7 +15,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 def collect_html_files():
     """Discover all HTML files across all editions."""
     files = [PROJECT_ROOT / "index.html"]
-    for edition_dir in ["standard-5", "standard-15", "lab-10"]:
+    for edition_dir in ["standard-5", "standard-15", "lab-10", "app-inventor-10", "web-ai-12"]:
         idx = PROJECT_ROOT / edition_dir / "index.html"
         if idx.exists():
             files.append(idx)

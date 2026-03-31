@@ -15,7 +15,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 def collect_html_files():
     """Discover all HTML files across all editions."""
     files = [PROJECT_ROOT / "index.html"]
-    for edition_dir in ["standard-5", "standard-15", "lab-10"]:
+    for edition_dir in ["standard-5", "standard-15", "lab-10", "app-inventor-10", "web-ai-12"]:
         idx = PROJECT_ROOT / edition_dir / "index.html"
         if idx.exists():
             files.append(idx)
@@ -58,6 +58,16 @@ def test_files_exist():
     for i in range(1, 11):
         p = PROJECT_ROOT / "lab-10" / "lessons" / f"lesson{i}.html"
         record(f"file_exists::lab-10/lessons/lesson{i}.html", p.exists(), str(p))
+    # App-Inventor-10
+    record("file_exists::app-inventor-10/index.html", (PROJECT_ROOT / "app-inventor-10" / "index.html").exists())
+    for i in range(1, 11):
+        p = PROJECT_ROOT / "app-inventor-10" / "lessons" / f"lesson{i}.html"
+        record(f"file_exists::app-inventor-10/lessons/lesson{i}.html", p.exists(), str(p))
+    # Web-AI-12
+    record("file_exists::web-ai-12/index.html", (PROJECT_ROOT / "web-ai-12" / "index.html").exists())
+    for i in range(1, 13):
+        p = PROJECT_ROOT / "web-ai-12" / "lessons" / f"lesson{i}.html"
+        record(f"file_exists::web-ai-12/lessons/lesson{i}.html", p.exists(), str(p))
 
 
 def test_doctype_and_lang():

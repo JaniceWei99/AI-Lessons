@@ -1,6 +1,6 @@
 # AI 探索之旅 / AI Explorer
 
-> 面向 13-15 岁初中生的人工智能入门课程，三大版本，纯前端网页交付，支持中英双语切换。
+> 面向青少年的人工智能入门课程，五大版本，纯前端网页交付，支持中英双语切换。
 
 ---
 
@@ -8,15 +8,15 @@
 
 | 属性 | 说明 |
 |:-----|:----|
-| 版本 | v1.0.0 |
-| 受众 | 13-15 岁初中生，零基础或有少量编程经验 |
+| 版本 | v1.3.0 |
+| 受众 | 10-16 岁青少年，零基础或有少量编程经验 |
 | 技术栈 | HTML5 + CSS3 + Vanilla JS (ES6+) |
 | 外部依赖 | Google Fonts CDN — 仅此一个 |
 | 浏览器 | Chrome / Edge / Firefox / Safari 最新两个主版本 |
 
 ---
 
-## 三大版本
+## 五大版本
 
 ### 精简版 (standard-5) — 5 课时
 
@@ -63,6 +63,38 @@
 | 9 | AI游戏实验 | AI Game Lab |
 | 10 | 综合项目展示 | Final Project Showcase |
 
+### AI App 创造营 (app-inventor-10) — 10 课时
+
+| 课号 | 中文标题 | English Title |
+|:----:|:--------|:-------------|
+| 1 | App Inventor 快速入门（上） | App Inventor Quick Start (Part 1) |
+| 2 | App Inventor 快速入门（下） | App Inventor Quick Start (Part 2) |
+| 3 | 天气 API 实战 | Weather API in Action |
+| 4 | AI 聊天助手（上） | AI Chat Assistant (Part 1) |
+| 5 | AI 聊天助手（下） | AI Chat Assistant (Part 2) |
+| 6 | AI 图像识别 | AI Image Recognition |
+| 7 | AI 语音助手 | AI Voice Assistant |
+| 8 | 设计工作坊 | Design Workshop |
+| 9 | 构建与调试 | Build & Debug |
+| 10 | Demo Day — 展示你的 App | Demo Day — Show Your App |
+
+### AI 网站工坊 (web-ai-12) — 12 课时
+
+| 课号 | 中文标题 | English Title |
+|:----:|:--------|:-------------|
+| 1 | HTML 基础（上） | HTML Basics (Part 1) |
+| 2 | HTML 基础（下） | HTML Basics (Part 2) |
+| 3 | CSS 美化（上） | CSS Styling (Part 1) |
+| 4 | CSS 美化（下） | CSS Styling (Part 2) |
+| 5 | JavaScript 入门（上） | JavaScript Intro (Part 1) |
+| 6 | JavaScript 入门（下） | JavaScript Intro (Part 2) |
+| 7 | API 调用基础 | API Basics — The Magic of fetch() |
+| 8 | 接入 AI（上） | AI Integration (Part 1) |
+| 9 | 接入 AI（下） | AI Integration (Part 2) |
+| 10 | AI 图像生成 | AI Image Generation |
+| 11 | 部署上线 | Deploy — Go Live |
+| 12 | Demo Day — 分享你的 AI 网站 | Demo Day — Share Your AI Website |
+
 ---
 
 ## 主要特性
@@ -94,7 +126,13 @@ AI-Class/
 ├── lab-10/                     # 实验版 (10 实验)
 │   ├── index.html
 │   └── lessons/                # lesson1-10.html
-├── test/                       # 测试套件 (7 套件, 3,707 用例)
+├── app-inventor-10/            # AI App 创造营 (10 课时)
+│   ├── index.html
+│   └── lessons/                # lesson1-10.html
+├── web-ai-12/                  # AI 网站工坊 (12 课时)
+│   ├── index.html
+│   └── lessons/                # lesson1-12.html
+├── test/                       # 测试套件 (7 套件, 6,277 用例)
 │   ├── run_all.py
 │   └── test_*.py
 ├── docs/                       # 项目文档
@@ -128,7 +166,7 @@ python3 serve.py
 # 需要 uv (Python 包管理器)
 # 安装: curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# 运行全部测试 (7 个套件, 3,707 个用例)
+# 运行全部测试 (7 个套件, 6,277 个用例)
 uv run test/run_all.py
 
 # 运行单个套件

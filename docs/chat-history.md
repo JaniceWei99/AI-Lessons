@@ -1,6 +1,6 @@
 # 开发对话记录 / Chat History
 
-> 最后更新: 2026-03-27 12:00 +0800
+> 最后更新: 2026-03-31 23:00 +0800
 
 本文件记录项目开发过程中的关键对话和决策过程。
 
@@ -231,6 +231,80 @@
 
 ---
 
+### Session 10 — 2026-03-31 20:00 +0800
+
+#### 主题: 新版本 — AI App 创造营 (app-inventor-10)
+
+**讨论要点**:
+- 用户要求创建第 4 个课程版本：MIT App Inventor + AI API
+- 面向 10-14 岁，共 10 课时
+
+**开发过程**:
+
+| 步骤 | 内容                      | 说明                                  |
+|:----:|:-------------------------|:--------------------------------------|
+|  1   | 创建 app-inventor-10/ 目录 | index.html + lessons/lesson1-10.html  |
+|  2   | 10 课课程内容              | App Inventor 入门 → API → AI 聊天助手 → 图像识别 → 语音 AI → Demo Day |
+|  3   | 每课 5 题 Quiz            | quiz ID: app1-app10，共 50 题          |
+|  4   | 门户页面更新               | 新增第 4 张版本卡片（琥珀色 badge）      |
+|  5   | 测试文件对齐               | 5 个测试文件新增 app-inventor-10 覆盖    |
+
+---
+
+### Session 11 — 2026-03-31 21:00 +0800
+
+#### 主题: 新版本 — AI 网站工坊 (web-ai-12)
+
+**讨论要点**:
+- 用户要求创建第 5 个课程版本：HTML/CSS/JS + AI API
+- 面向 12-16 岁，共 12 课时
+
+**开发过程**:
+
+| 步骤 | 内容                      | 说明                                  |
+|:----:|:-------------------------|:--------------------------------------|
+|  1   | 创建 web-ai-12/ 目录       | index.html + lessons/lesson1-12.html  |
+|  2   | 12 课课程内容              | HTML → CSS → JS → API → AI 聊天助手 → AI 图像 → 部署 → Demo Day |
+|  3   | 每课 5 题 Quiz            | quiz ID: web1-web12，共 60 题          |
+|  4   | 门户页面更新               | 第 5 张版本卡片（粉色 badge），网格升级为 5 列 |
+|  5   | 测试文件对齐               | 5 个测试文件新增 web-ai-12 覆盖          |
+
+---
+
+### Session 12 — 2026-03-31 22:30 +0800
+
+#### 主题: 全面文档与测试对齐 (v1.3.0)
+
+**讨论要点**:
+- 将所有文档和测试更新至五版本架构
+- 全面审计项目一致性
+
+**更新文件清单**:
+
+| 文件                     | 更新内容                                          |
+|:------------------------|:--------------------------------------------------|
+| README.md               | 版本号 v1.3.0，五大版本课表，统计数据                 |
+| AGENTS.md               | 新增 app-inventor-10 和 web-ai-12 目录              |
+| SPEC.md                 | 文件结构新增 2 个版本，受众描述更新                    |
+| docs/architecture.md    | 文件结构、代码量、测试套件数据更新至 6,185             |
+| docs/changelog.md       | 新增 v1.2.2 和 v1.3.0 变更记录                      |
+| docs/status-report.md   | 测试数据更新至 6,185，里程碑新增                      |
+| docs/user-guide.md      | 新增两个版本简介                                     |
+| docs/deployment.md      | 部署示例/Dockerfile/检查清单新增 2 个版本             |
+| docs/chat-history.md    | 新增 Session 10-12 记录 (本文件)                     |
+| test_html_structure.py  | 新增 app-inventor-10 和 web-ai-12 文件存在性测试      |
+| test_navigation.py      | test_lesson_prev_next() 新增 2 个版本                |
+| test_bilingual.py       | test_lesson_nav_footer_bilingual() 新增 2 个版本     |
+
+**修复项**:
+- standard-5/index.html nav-logo href 修正 (`index.html` → `../index.html`)
+- lab-10 quiz ID 统一 (`lab-lesson9/10` → `lab9/lab10`)
+- 创建 LICENSE 文件 (MIT)
+
+**测试结果**: 6,277 / 6,277 全部通过
+
+---
+
 ## 决策汇总
 
 ### 关键技术决策
@@ -249,4 +323,4 @@
 
 ---
 
-*文档版本: v1.1 | 最后更新: 2026-03-27 12:00 +0800*
+*文档版本: v1.3 | 最后更新: 2026-03-31 23:00 +0800*

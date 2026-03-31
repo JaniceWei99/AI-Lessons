@@ -17,7 +17,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 def collect_html_files():
     """Discover all HTML files across all editions."""
     files = [PROJECT_ROOT / "index.html"]
-    for edition_dir in ["standard-5", "standard-15", "lab-10"]:
+    for edition_dir in ["standard-5", "standard-15", "lab-10", "app-inventor-10", "web-ai-12"]:
         idx = PROJECT_ROOT / edition_dir / "index.html"
         if idx.exists():
             files.append(idx)
@@ -110,6 +110,8 @@ def test_lesson_prev_next():
         PROJECT_ROOT / "standard-5" / "lessons",
         PROJECT_ROOT / "standard-15" / "lessons",
         PROJECT_ROOT / "lab-10" / "lessons",
+        PROJECT_ROOT / "app-inventor-10" / "lessons",
+        PROJECT_ROOT / "web-ai-12" / "lessons",
     ]
     for ld in lesson_dirs:
         if not ld.exists():
@@ -151,7 +153,7 @@ def test_homepage_lesson_links():
             record(f"portal_edition_link::{target.name}", target.exists(), href)
 
     # Check edition index pages link to their lessons
-    for edition_dir in ["standard-5", "standard-15", "lab-10"]:
+    for edition_dir in ["standard-5", "standard-15", "lab-10", "app-inventor-10", "web-ai-12"]:
         idx = PROJECT_ROOT / edition_dir / "index.html"
         if not idx.exists():
             continue

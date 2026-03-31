@@ -199,13 +199,13 @@ def test_homepage():
     record("portal_hero", hero is not None)
 
     edition_cards = soup.find_all("div", class_="edition-card")
-    record("portal_edition_cards", len(edition_cards) == 3, f"found {len(edition_cards)}")
+    record("portal_edition_cards", len(edition_cards) == 5, f"found {len(edition_cards)}")
 
     features = soup.find_all("div", class_="feature-card")
     record("portal_feature_cards", len(features) == 4, f"found {len(features)}")
 
     edition_ctas = soup.find_all("a", class_="edition-cta")
-    record("portal_edition_ctas", len(edition_ctas) == 3, f"found {len(edition_ctas)}")
+    record("portal_edition_ctas", len(edition_ctas) == 5, f"found {len(edition_ctas)}")
 
 
 def test_edition_index_pages():
@@ -214,6 +214,8 @@ def test_edition_index_pages():
         "standard-5": {"lesson_count": 5},
         "standard-15": {"lesson_count": 15},
         "lab-10": {"lesson_count": 10},
+        "app-inventor-10": {"lesson_count": 10},
+        "web-ai-12": {"lesson_count": 12},
     }
     for name, spec in editions.items():
         idx = PROJECT_ROOT / name / "index.html"
@@ -230,7 +232,7 @@ def test_edition_index_pages():
 
 def test_edition_lessons_basic():
     """Basic structure check for all edition lesson files."""
-    for edition_dir in ["standard-15", "lab-10"]:
+    for edition_dir in ["standard-15", "lab-10", "app-inventor-10", "web-ai-12"]:
         lesson_dir = PROJECT_ROOT / edition_dir / "lessons"
         if not lesson_dir.exists():
             continue
