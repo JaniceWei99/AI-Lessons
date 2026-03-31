@@ -7,3 +7,6 @@ test/reports/
 
 # Devin tool config
 .devin/
+
+# Private market analysis & business plans
+Market-analysis/
