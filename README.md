@@ -209,6 +209,7 @@ uv run test/test_html_structure.py
 | [docs/deployment.md](docs/deployment.md) | 部署指南 |
 | [docs/user-guide.md](docs/user-guide.md) | 用户使用指南 |
 | [docs/changelog.md](docs/changelog.md) | 变更日志 |
+| [docs/maintenance-guide.md](docs/maintenance-guide.md) | 课程维护指南 |
 | [docs/status-report.md](docs/status-report.md) | 状态报告 |
 
 ---
