@@ -25,19 +25,24 @@ AI-Class/
 ├── js/main.js              # Shared global JavaScript
 ├── standard-5/             # 5-lesson standard edition
 │   ├── index.html          # Edition landing page
-│   └── lessons/            # lesson1-5.html
+│   ├── lessons/            # lesson1-5.html
+│   └── scripts/            # 第1-5课-讲解文本.md (teaching scripts)
 ├── standard-15/            # 15-lesson comprehensive edition
 │   ├── index.html          # Edition landing page
-│   └── lessons/            # lesson1-15.html
+│   ├── lessons/            # lesson1-15.html
+│   └── scripts/            # 第1-15课-讲解文本.md (teaching scripts)
 ├── lab-10/                 # 10-lab hands-on edition
 │   ├── index.html          # Edition landing page
-│   └── lessons/            # lesson1-10.html
+│   ├── lessons/            # lesson1-10.html
+│   └── scripts/            # 第1-10课-讲解文本.md (teaching scripts)
 ├── app-inventor-10/        # 10-lesson AI App Studio (MIT App Inventor + AI API)
 │   ├── index.html          # Edition landing page
-│   └── lessons/            # lesson1-10.html
+│   ├── lessons/            # lesson1-10.html
+│   └── scripts/            # 第1-10课-讲解文本.md (teaching scripts)
 ├── web-ai-12/              # 12-lesson AI Web Studio (HTML/CSS/JS + AI API)
 │   ├── index.html          # Edition landing page
-│   └── lessons/            # lesson1-12.html
+│   ├── lessons/            # lesson1-12.html
+│   └── scripts/            # 第1-12课-讲解文本.md (teaching scripts)
 ├── test/                   # Test suite
 └── docs/                   # Documentation
 ```

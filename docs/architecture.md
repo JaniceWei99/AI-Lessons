@@ -1,6 +1,6 @@
 # 技术架构文档 / Architecture
 
-> 最后更新: 2026-03-31 23:00 +0800
+> 最后更新: 2026-04-01 11:00 +0800
 
 ---
 
@@ -100,23 +100,28 @@ AI-Class/                           # 项目根目录
 │
 ├── standard-5/                     # 精简版 (5 课时)
 │   ├── index.html                  # 版本首页
-│   └── lessons/                    # lesson1-5.html
+│   ├── lessons/                    # lesson1-5.html
+│   └── scripts/                    # 第1-5课-讲解文本.md
 │
 ├── standard-15/                    # 完整版 (15 课时)
 │   ├── index.html                  # 版本首页
-│   └── lessons/                    # lesson1-15.html
+│   ├── lessons/                    # lesson1-15.html
+│   └── scripts/                    # 第1-15课-讲解文本.md
 │
 ├── lab-10/                         # 实验版 (10 实验)
 │   ├── index.html                  # 版本首页
-│   └── lessons/                    # lesson1-10.html
+│   ├── lessons/                    # lesson1-10.html
+│   └── scripts/                    # 第1-10课-讲解文本.md
 │
 ├── app-inventor-10/                # AI App 创造营 (10 课时)
 │   ├── index.html                  # 版本首页
-│   └── lessons/                    # lesson1-10.html
+│   ├── lessons/                    # lesson1-10.html
+│   └── scripts/                    # 第1-10课-讲解文本.md
 │
 ├── web-ai-12/                      # AI 网站工坊 (12 课时)
 │   ├── index.html                  # 版本首页
-│   └── lessons/                    # lesson1-12.html
+│   ├── lessons/                    # lesson1-12.html
+│   └── scripts/                    # 第1-12课-讲解文本.md
 │
 ├── assets/images/                  # 图片资源 (可选)
 │
@@ -140,7 +145,8 @@ AI-Class/                           # 项目根目录
 | lab-10/         | 4,888   | 实验版 10 课 + 版本首页          |
 | app-inventor-10/| 4,671   | 创造营 10 课 + 版本首页          |
 | web-ai-12/      | 6,344   | 网站工坊 12 课 + 版本首页        |
-| **总计**        | **~26,900** | **不含测试和文档**           |
+| */scripts/      | ~3,200  | 52 份教师讲解文本 (Markdown)     |
+| **总计**        | **~30,100** | **不含测试和文档**           |
 
 ---
 
@@ -496,4 +502,4 @@ uv run test/run_all.py
 
 ---
 
-*文档版本: v1.3 | 最后更新: 2026-03-31 23:00 +0800*
+*文档版本: v1.4 | 最后更新: 2026-04-01 11:00 +0800*

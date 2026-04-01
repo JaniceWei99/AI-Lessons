@@ -8,7 +8,7 @@
 
 | 属性 | 说明 |
 |:-----|:----|
-| 版本 | v1.3.0 |
+| 版本 | v1.4.0 |
 | 受众 | 10-16 岁青少年，零基础或有少量编程经验 |
 | 技术栈 | HTML5 + CSS3 + Vanilla JS (ES6+) |
 | 外部依赖 | Google Fonts CDN — 仅此一个 |
@@ -99,6 +99,7 @@
 
 ## 主要特性
 
+- **教师讲解文本** — 52 份教师讲稿 (Markdown)，覆盖全部课程每一课
 - **中英双语** — 一键切换，偏好自动保存
 - **暗色模式** — 亮色 / 暗色主题，默认跟随系统偏好
 - **丰富交互** — 时间线、决策树、AI 鉴别挑战、Prompt 工程练习
@@ -119,19 +120,24 @@ AI-Class/
 ├── js/main.js                  # 共享全局脚本 (486 行, 12 个功能模块)
 ├── standard-5/                 # 精简版 (5 课时)
 │   ├── index.html
-│   └── lessons/                # lesson1-5.html
+│   ├── lessons/                # lesson1-5.html
+│   └── scripts/                # 第1-5课-讲解文本.md
 ├── standard-15/                # 完整版 (15 课时)
 │   ├── index.html
-│   └── lessons/                # lesson1-15.html
+│   ├── lessons/                # lesson1-15.html
+│   └── scripts/                # 第1-15课-讲解文本.md
 ├── lab-10/                     # 实验版 (10 实验)
 │   ├── index.html
-│   └── lessons/                # lesson1-10.html
+│   ├── lessons/                # lesson1-10.html
+│   └── scripts/                # 第1-10课-讲解文本.md
 ├── app-inventor-10/            # AI App 创造营 (10 课时)
 │   ├── index.html
-│   └── lessons/                # lesson1-10.html
+│   ├── lessons/                # lesson1-10.html
+│   └── scripts/                # 第1-10课-讲解文本.md
 ├── web-ai-12/                  # AI 网站工坊 (12 课时)
 │   ├── index.html
-│   └── lessons/                # lesson1-12.html
+│   ├── lessons/                # lesson1-12.html
+│   └── scripts/                # 第1-12课-讲解文本.md
 ├── test/                       # 测试套件 (7 套件, 6,277 用例)
 │   ├── run_all.py
 │   └── test_*.py
@@ -204,6 +210,22 @@ uv run test/test_html_structure.py
 | [docs/user-guide.md](docs/user-guide.md) | 用户使用指南 |
 | [docs/changelog.md](docs/changelog.md) | 变更日志 |
 | [docs/status-report.md](docs/status-report.md) | 状态报告 |
+
+---
+
+## 教师讲解文本
+
+每个版本的 `scripts/` 目录中包含按课编号的教师讲稿（Markdown 格式），共 52 份，供授课教师备课参考。
+
+| 版本 | 文件数 | 路径示例 |
+|:----|:------:|:--------|
+| 精简版 standard-5 | 5 份 | `standard-5/scripts/第1课-讲解文本.md` |
+| 完整版 standard-15 | 15 份 | `standard-15/scripts/第1课-讲解文本.md` |
+| 实验版 lab-10 | 10 份 | `lab-10/scripts/第1课-讲解文本.md` |
+| 创造营 app-inventor-10 | 10 份 | `app-inventor-10/scripts/第1课-讲解文本.md` |
+| 网站工坊 web-ai-12 | 12 份 | `web-ai-12/scripts/第1课-讲解文本.md` |
+
+每份讲稿包含：教学目标、课时建议、教学流程（含时间分配）、导入环节、核心概念讲解（含类比/故事/例子）、互动/实操环节指导、常见学生提问与应答建议、总结与回顾、课后延伸。
 
 ---
 
